@@ -1,0 +1,39 @@
+Debugger use:
+
+start a new Erlang node: outside Emacs, or within it (C-c C-z)
+make sure the node is named (option: -sname <node name>)
+the Erlang node and Distel must agree on the cookie (will probably work automatically on the same machine)
+connect Distel to the started node (C-c C-d n <node name>)
+open the module on an Emacs buffer
+toggle debug interpretation of the module (C-c C-d i)
+place breakpoints (C-x SPC)
+
+make changes
+(re)compile the code: on the shell, make sure you include debug_info
+(re)load the module: through the buffer (C-c C-d L), not on the shell
+--> can also use (C-c C-d r) to reload all out-of date modules
+[synchronize breakpoint (C-c C-d s)]
+run the code
+
+the code hits the breakpoint
+[Popup the Monitor buffer manually (C-c C-d m)]
+press ENTER to select the stopped process running code inside the module
+[press h for a listing of debugger commands]
+
+--> can define a macro to compile, reload and sync?
+--> can setup debug toggle to happen automatically when placing a breakpoint?
+--> when stopping at a breakpoint, can I go back up to a module that is not being interpreted?
+--> Distel bug: need to popup and kill the process monitor once before doing anything
+
+Other provided functions (also see describe-mode = C-h m):
+
+C-c C-d z - Show the signature for the function under point.
+C-c C-d h - Show the HTML documentation for the function under point.
+C-c C-d d - Describe a function with fdoc.
+C-c C-d a - Show apropos information about Erlang functions
+M-/ | M-? - Complete a module or remote function name.
+
+M-.	  - Jump from a function call to its definition.
+M-, | M-* - Jump back from a function definition (multi-level).
+C-c C-d w - Who calls function under point.
+C-c C-d F - Find a module
