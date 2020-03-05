@@ -349,7 +349,7 @@ traceback location."
             "getmetatable" "ipairs" "load" "loadfile" "loadstring" "module"
             "next" "pairs" "pcall" "print" "rawequal" "rawget" "rawlen" "rawset"
             "require" "select" "setfenv" "setmetatable" "tonumber" "tostring"
-            "type" "unpack" "xpcall" "self" "import"
+            "type" "unpack" "xpcall" "self"
             ("bit32" . ("arshift" "band" "bnot" "bor" "btest" "bxor" "extract"
                         "lrotate" "lshift" "replace" "rrotate" "rshift"))
             ("coroutine" . ("create" "resume" "running" "status" "wrap" "yield"))
@@ -494,13 +494,13 @@ Groups 6-9 can be used in any of argument regexps."
 
 (defconst lua-local-defun-regexp
   ;; Function matchers are very crude, need rewrite at some point.
-  (rx (or (seq (regexp "\\(?:\\_<function\\|terra\\_>\\)")
+  (rx (or (seq (regexp "\\(?:\\_<function\\_>\\)")
                (* blank)
                (? (regexp "\\(?1:\\_<[[:alpha:]][[:alnum:]]*\\_>\\)"))
                (regexp "\\(?2:.*\\)"))
           (seq (? (regexp "\\(?1:\\_<[[:alpha:]][[:alnum:]]*\\_>\\)"))
                (* blank) "=" (* blank)
-               (regexp "\\(?:\\_<function\\|terra\\_>\\)")
+               (regexp "\\(?:\\_<function\\_>\\)")
                (regexp "\\(?2:.*\\)")))))
 
 (defvar lua-font-lock-keywords
@@ -512,7 +512,7 @@ Groups 6-9 can be used in any of argument regexps."
           (or "and" "break" "do" "else" "elseif" "end" "false"
               "for" "function" "if" "in" "local" "nil" "not"
               "or" "repeat" "return" "then" "true" "until"
-              "while" "escape" "quote" "terra" "rquote" "rexpr" "task" "ebb")
+              "while")
           symbol-end)
      . font-lock-keyword-face)
 
@@ -560,7 +560,7 @@ Groups 6-9 can be used in any of argument regexps."
       nil nil
       (1 font-lock-function-name-face nil noerror))
 
-     (,(lua-make-delimited-matcher "\\_<[[:alpha:]_][[:alnum:]_]*\\_>" ","
+     (,(lua-make-delimited-matcher "\\_<[[:alpha:]_][[:alnum:]_]*\\_>" "," 
                                    "=\\(?:[^=]\\|$\\)")
       nil nil
       (1 font-lock-variable-name-face nil noerror)
@@ -569,12 +569,12 @@ Groups 6-9 can be used in any of argument regexps."
 
     ;; Function matchers are very crude, need rewrite at some point.
     ;; Function name declarations.
-    ("^[ \t]*\\_<function\\|terra\\_>[ \t]+\\([[:alnum:]_]+\\(?:\\.[[:alnum:]_]+\\)*\\(?::[[:alnum:]_]+\\)?\\)"
+    ("^[ \t]*\\_<function\\_>[ \t]+\\([[:alnum:]_]+\\(?:\\.[[:alnum:]_]+\\)*\\(?::[[:alnum:]_]+\\)?\\)"
      (1 font-lock-function-name-face))
 
     ;; Function matchers are very crude, need rewrite at some point.
     ;; Handle function names in assignments
-    ("^[ \t]*\\([[:alnum:]_]+\\(?:\\.[[:alnum:]_]+\\)*\\(?::[[:alnum:]_]+\\)?\\)[ \t]*=[ \t]*\\_<function\\|terra\\_>"
+    ("^[ \t]*\\([[:alnum:]_]+\\(?:\\.[[:alnum:]_]+\\)*\\(?::[[:alnum:]_]+\\)?\\)[ \t]*=[ \t]*\\_<function\\_>"
      (1 font-lock-function-name-face)))
 
   "Default expressions to highlight in Lua mode.")
@@ -584,19 +584,12 @@ Groups 6-9 can be used in any of argument regexps."
   ;; definitions, but are not necessarily allowed by Lua syntax.  This
   ;; is done on purpose to avoid frustration when making a small error
   ;; might cause a function get hidden from imenu index. --immerrr
-  '((nil "^[ \t]*\\(?:local[ \t]+\\)?function\\|terra[ \t]+\\([[:alnum:]_:.]+\\)" 1)
-    (nil "^[ \t]*\\(?:local[ \t]+\\)?\\(\\_<[[:alnum:]_:.]+\\_>\\)[ \t]*=\[ \t]*\\_<function\\|terra\\_>" 1))
+  '((nil "^[ \t]*\\(?:local[ \t]+\\)?function[ \t]+\\([[:alnum:]_:.]+\\)" 1)
+    (nil "^[ \t]*\\(?:local[ \t]+\\)?\\(\\_<[[:alnum:]_:.]+\\_>\\)[ \t]*=\[ \t]*\\_<function\\_>" 1))
   "Imenu generic expression for lua-mode.  See `imenu-generic-expression'.")
 
 (defvar lua-sexp-alist '(("then" . "end")
                          ("function" . "end")
-                         ("terra" . "end")
-                         ("escape" . "end")
-                         ("quote" . "end")
-                         ("rquote" . "end")
-                         ("rexpr" . "end")
-                         ("task" . "end")
-                         ("ebb" . "end")
                          ("do" . "end")))
 
 (defvar lua-mode-abbrev-table nil
@@ -898,21 +891,12 @@ ignored, nil otherwise."
     (concat
      "\\(\\_<"
      (regexp-opt '("do" "function" "repeat" "then"
-                   "else" "elseif" "end" "until"
-                   "escape" "quote" "terra" "rquote" "rexpr" "task" "ebb") t)
+                   "else" "elseif" "end" "until") t)
      "\\_>\\)\\|"
      (regexp-opt '("{" "(" "[" "]" ")" "}") t))))
 
 (defconst lua-block-token-alist
   '(("do"       "\\<end\\>"   "\\<for\\|while\\>"                       middle-or-open)
-    ("function" "\\<end\\>"   nil                                       open)
-    ("escape"   "\\<end\\>"   nil                                       open)
-    ("quote"    "\\<end\\>"   nil                                       open)
-    ("terra"    "\\<end\\>"   nil                                       open)
-    ("rquote"   "\\<end\\>"   nil                                       open)
-    ("rexpr"    "\\<end\\>"   nil                                       open)
-    ("task"     "\\<end\\>"   nil                                       open)
-    ("ebb"      "\\<end\\>"   nil                                       open)
     ("function" "\\<end\\>"   nil                                       open)
     ("repeat"   "\\<until\\>" nil                                       open)
     ("then"     "\\<\\(e\\(lse\\(if\\)?\\|nd\\)\\)\\>" "\\<\\(else\\)?if\\>" middle)
@@ -924,7 +908,7 @@ ignored, nil otherwise."
     ("while"    "\\<do\\>"    nil                                       open)
     ("else"     "\\<end\\>"   "\\<then\\>"                              middle)
     ("elseif"   "\\<then\\>"  "\\<then\\>"                              middle)
-    ("end"      nil           "\\<\\(do\\|function\\|escape\\|quote\\|terra\\|rquote\\|rexpr\\|task\\|ebb\\|then\\|else\\)\\>" close)
+    ("end"      nil           "\\<\\(do\\|function\\|then\\|else\\)\\>" close)
     ("until"    nil           "\\<repeat\\>"                            close)
     ("}"        nil           "{"                                       close)
     ("]"        nil           "\\["                                     close)
@@ -943,7 +927,7 @@ TOKEN-TYPE determines where the token occurs on a statement. open indicates that
   ;; else is, to be shifted to the left.
   (concat
    "\\(\\_<"
-   (regexp-opt '("do" "function" "escape" "quote" "terra" "rquote" "rexpr" "task" "ebb" "repeat" "then" "if" "else" "elseif" "for" "while") t)
+   (regexp-opt '("do" "function" "repeat" "then" "if" "else" "elseif" "for" "while") t)
    "\\_>\\|"
    (regexp-opt '("{" "(" "["))
    "\\)\\|\\(\\_<"
@@ -1093,8 +1077,7 @@ Returns final value of point as integer or nil if operation failed."
     (concat
      "\\(\\_<"
      (regexp-opt '("and" "or" "not" "in" "for" "while"
-                   "local" "function" "if" "until" "elseif" "return"
-                   "escape" "quote" "terra" "rquote" "rexpr" "task" "ebb") t)
+                   "local" "function" "if" "until" "elseif" "return") t)
      "\\_>\\|"
      "\\(^\\|[^" lua-operator-class "]\\)"
      (regexp-opt '("+" "-" "*" "/" "^" ".." "==" "=" "<" ">" "<=" ">=" "~=") t)
@@ -1196,7 +1179,7 @@ use standalone."
    ;; function. i.e.:
    ;;       (cons 'absolute (+ (current-column) lua-indent-level))
    ;; TODO: Fix this. It causes really ugly indentations for in-line functions.
-   ((string-equal found-token "function") ; TODO: not added terra here
+   ((string-equal found-token "function")
     (cons 'relative lua-indent-level))
 
    ;; block openers
@@ -1400,7 +1383,7 @@ one."
      ;; introduced in Emacs 24.2 only, so for the sake of code clarity the named
      ;; groups don't really match anything, they just report the position of the
      ;; match.
-     (or (seq (regexp "\\_<local[ \t]+") (regexp "\\(?1:\\)function\\|terra\\_>"))
+     (or (seq (regexp "\\_<local[ \t]+") (regexp "\\(?1:\\)function\\_>"))
          (seq (eval lua--function-name-rx) (* blank) (regexp "\\(?1:\\)[{(]"))
          (seq (or
                ;; assignment statement prefix
@@ -1410,7 +1393,7 @@ one."
               (regexp "\\(?1:\\)")
               ;; right hand side
               (or "{"
-                  "function" ; TODO: not added terra here
+                  "function"
                   (seq
                    (eval lua--function-name-rx) (* blank)
                    (regexp "\\(?1:\\)") (any "({")))))))
@@ -1511,7 +1494,7 @@ Returns t unless search stops due to beginning or end of buffer."
   (let ((found nil)
         (ret t))
     (while (< arg 0)
-      (if (re-search-forward "^\\(function\\|terra\\)[ \t]" nil t)
+      (if (re-search-forward "^function[ \t]" nil t)
           (setq arg (1+ arg)
                 found t)
         (setq ret nil
@@ -1519,11 +1502,11 @@ Returns t unless search stops due to beginning or end of buffer."
     (if found
         (beginning-of-line))
     (if (> arg 0)
-        (if (re-search-forward "^\\(function\\|terra\\)[ \t]" nil t)
+        (if (re-search-forward "^function[ \t]" nil t)
             (setq arg (1+ arg))
           (goto-char (point-max))))
     (while (> arg 0)
-      (if (re-search-backward "^\\(function\\|terra\\)[ \t]" nil t)
+      (if (re-search-backward "^function[ \t]" nil t)
           (setq arg (1- arg))
         (setq ret nil
               arg 0)))
@@ -1610,7 +1593,7 @@ If `lua-process' is nil or dead, start a new process first."
   "Send the function definition around point to lua subprocess."
   (interactive "d")
   (save-excursion
-    (let ((start (if (save-match-data (looking-at "^\\(function\\|terra\\)[ \t]"))
+    (let ((start (if (save-match-data (looking-at "^function[ \t]"))
                      ;; point already at the start of "function".
                      ;; We need to handle this case explicitly since
                      ;; lua-beginning-of-proc will move to the
