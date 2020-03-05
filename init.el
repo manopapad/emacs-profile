@@ -1,5 +1,3 @@
-;; -*- LISP -*-
-
 ;; Include the lib/ directory in the load path, and the initial value of
 ;; $PATH used for spawned shells.
 (setq user-lib-dir (concat user-emacs-directory "lib/"))
