@@ -310,6 +310,11 @@
 ;; Disable Ctrl-T transpose character.
 (global-unset-key [(control t)])
 
+;; Clear some keybindings for my use
+(global-unset-key (kbd "M-."))
+(global-unset-key (kbd "M-,"))
+(global-unset-key (kbd "M-?"))
+
 ;; Define custom next-buffer and previous-buffer commands, that skip over
 ;; automatic buffers
 (setq skippable-buffers '("*Messages*" "*scratch*" "*Help*" "*Completions*"
@@ -331,11 +336,11 @@
 ;; This will stop major modes from overriding my key bindings
 (defvar my-keys-minor-mode-map (make-keymap) "my-keys-minor-mode keymap.")
 
-(define-key my-keys-minor-mode-map (kbd "C-.") 'tabbar-forward)
-(define-key my-keys-minor-mode-map (kbd "C-,") 'tabbar-backward)
+(define-key my-keys-minor-mode-map (kbd "M-.") 'tabbar-forward)
+(define-key my-keys-minor-mode-map (kbd "M-,") 'tabbar-backward)
 ;;(define-key my-keys-minor-mode-map (kbd "C-.") 'my-next-buffer)
 ;;(define-key my-keys-minor-mode-map (kbd "C-,") 'my-previous-buffer)
-(define-key my-keys-minor-mode-map (kbd "C-?") 'redo)
+(define-key my-keys-minor-mode-map (kbd "M-/") 'redo)
 (define-key my-keys-minor-mode-map [(control tab)] 'indent-region)
 (define-key my-keys-minor-mode-map (kbd "C-x C-,") 'windmove-left)
 (define-key my-keys-minor-mode-map (kbd "C-x C-.") 'windmove-right)
