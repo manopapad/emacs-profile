@@ -186,61 +186,61 @@
 (tabbar-mode 1)
 
 ;; Better styling of tabs
-;; (set-face-attribute
-;;  'tabbar-default nil
-;;  :background "gray20"
-;;  :foreground "gray20"
-;;  :box '(:line-width 1 :color "gray20" :style nil))
-;; (set-face-attribute
-;;  'tabbar-unselected nil
-;;  :background "gray30"
-;;  :foreground "white"
-;;  :box '(:line-width 3 :color "gray30" :style nil))
-;; (set-face-attribute
-;;  'tabbar-selected nil
-;;  :background "gray75"
-;;  :foreground "black"
-;;  :box '(:line-width 3 :color "gray75" :style nil))
-;; (set-face-attribute
-;;  'tabbar-highlight nil
-;;  :background "white"
-;;  :foreground "black"
-;;  :underline nil
-;;  :box '(:line-width 3 :color "white" :style nil))
-;; (set-face-attribute
-;;  'tabbar-button nil
-;;  :box '(:line-width 1 :color "gray20" :style nil))
-;; (set-face-attribute
-;;  'tabbar-separator nil
-;;  :background "gray20"
-;;  :height 0.6)
-
-;; Alternative tab styling
 (set-face-attribute
  'tabbar-default nil
- :background "gray60")
+ :background "gray20"
+ :foreground "gray20"
+ :box '(:line-width 1 :color "gray20" :style nil))
 (set-face-attribute
  'tabbar-unselected nil
- :background "gray85"
- :foreground "gray30"
- :box nil)
+ :background "gray30"
+ :foreground "white"
+ :box '(:line-width 3 :color "gray30" :style nil))
 (set-face-attribute
  'tabbar-selected nil
- :background "#f2f2f6"
+ :background "gray75"
  :foreground "black"
- :box nil)
+ :box '(:line-width 3 :color "gray75" :style nil))
 (set-face-attribute
  'tabbar-highlight nil
  :background "white"
  :foreground "black"
  :underline nil
- :box nil)
+ :box '(:line-width 3 :color "white" :style nil))
 (set-face-attribute
  'tabbar-button nil
- :box '(:line-width 1 :color "gray72" :style released-button))
+ :box '(:line-width 1 :color "gray20" :style nil))
 (set-face-attribute
  'tabbar-separator nil
- :height 0.7)
+ :background "gray20"
+ :height 0.6)
+
+;; Alternative tab styling
+;; (set-face-attribute
+;;  'tabbar-default nil
+;;  :background "gray60")
+;; (set-face-attribute
+;;  'tabbar-unselected nil
+;;  :background "gray85"
+;;  :foreground "gray30"
+;;  :box nil)
+;; (set-face-attribute
+;;  'tabbar-selected nil
+;;  :background "#f2f2f6"
+;;  :foreground "black"
+;;  :box nil)
+;; (set-face-attribute
+;;  'tabbar-highlight nil
+;;  :background "white"
+;;  :foreground "black"
+;;  :underline nil
+;;  :box nil)
+;; (set-face-attribute
+;;  'tabbar-button nil
+;;  :box '(:line-width 1 :color "gray72" :style released-button))
+;; (set-face-attribute
+;;  'tabbar-separator nil
+;;  :height 0.7)
 
 ;; Change padding of the tabs
 ;; we also need to set separator to avoid overlapping tabs by highlighted tabs
@@ -340,7 +340,7 @@
 (define-key my-keys-minor-mode-map (kbd "M-,") 'tabbar-backward)
 ;;(define-key my-keys-minor-mode-map (kbd "C-.") 'my-next-buffer)
 ;;(define-key my-keys-minor-mode-map (kbd "C-,") 'my-previous-buffer)
-(define-key my-keys-minor-mode-map (kbd "M-/") 'redo)
+(define-key my-keys-minor-mode-map (kbd "C-x C-_") 'redo)
 (define-key my-keys-minor-mode-map [(control tab)] 'indent-region)
 (define-key my-keys-minor-mode-map (kbd "C-x C-,") 'windmove-left)
 (define-key my-keys-minor-mode-map (kbd "C-x C-.") 'windmove-right)
