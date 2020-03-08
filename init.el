@@ -185,7 +185,7 @@
 (require 'tabbar)
 (tabbar-mode 1)
 
-;; Better styling of tabs
+;; Styling choice 1
 (set-face-attribute
  'tabbar-default nil
  :background "gray20"
@@ -215,7 +215,42 @@
  :background "gray20"
  :height 0.6)
 
-;; Alternative tab styling
+;; Styling choice 2
+;; (set-face-attribute
+;;  'tabbar-default nil
+;;  :background "gray20"
+;;  :foreground "gray20"
+;;  :box '(:line-width 1 :color "gray20" :style nil))
+;; (set-face-attribute
+;;  'tabbar-unselected nil
+;;  :background "gray75"
+;;  :foreground "gray20"
+;;  :box '(:line-width 5 :color "gray20" :style nil))
+;; (set-face-attribute
+;;  'tabbar-selected nil
+;;  :background "gray75"
+;;  :foreground "black"
+;;  :box '(:line-width 5 :color "black" :style nil))
+;; (set-face-attribute
+;;  'tabbar-modified nil
+;;  :background "gray75"
+;;  :foreground "gray30"
+;;  :box '(:line-width 5 :color "gray30" :style nil))
+;; (set-face-attribute
+;;  'tabbar-highlight nil
+;;  :background "gray75"
+;;  :foreground "black"
+;;  :underline nil
+;;  :box '(:line-width 5 :color "black" :style nil))
+;; (set-face-attribute
+;;  'tabbar-button nil
+;;  :box '(:line-width 1 :color "gray20" :style nil))
+;; (set-face-attribute
+;;  'tabbar-separator nil
+;;  :background "gray20"
+;;  :height 0.6)
+
+;; Styling choice 3
 ;; (set-face-attribute
 ;;  'tabbar-default nil
 ;;  :background "gray60")
@@ -241,6 +276,114 @@
 ;; (set-face-attribute
 ;;  'tabbar-separator nil
 ;;  :height 0.7)
+
+;; Styling choice 4
+;; (set-face-attribute
+;;  'tabbar-default nil
+;;  :background "gray20"
+;;  :foreground "gray20"
+;;  :box '(:line-width 1 :color "gray20" :style nil))
+;; (set-face-attribute
+;;  'tabbar-unselected nil
+;;  :background "gray30"
+;;  :foreground "white"
+;;  :box '(:line-width 5 :color "gray30" :style nil))
+;; (set-face-attribute
+;;  'tabbar-selected nil
+;;  :background "gray75"
+;;  :foreground "black"
+;;  :box '(:line-width 5 :color "gray75" :style nil))
+;; (set-face-attribute
+;;  'tabbar-highlight nil
+;;  :background "white"
+;;  :foreground "black"
+;;  :underline nil
+;;  :box '(:line-width 5 :color "white" :style nil))
+;; (set-face-attribute
+;;  'tabbar-button nil
+;;  :box '(:line-width 1 :color "gray20" :style nil))
+;; (set-face-attribute
+;;  'tabbar-separator nil
+;;  :background "gray20"
+;;  :height 0.6)
+
+;; Styling choice 5
+;; (set-face-attribute
+;;  'tabbar-default nil
+;;  :background "gray20"
+;;  :foreground "gray20"
+;;  :box '(:line-width 1 :color "gray20" :style nil))
+;; (set-face-attribute
+;;  'tabbar-unselected nil
+;;  :background "gray30"
+;;  :foreground "white"
+;;  :underline nil
+;;  :box '(:line-width 5 :color "gray30" :style nil))
+;; (set-face-attribute
+;;  'tabbar-modified nil
+;;  :background "gray30"
+;;  :foreground "red"
+;;  :underline nil
+;;  :box '(:line-width 5 :color "gray30" :style nil))
+;; (set-face-attribute
+;;  'tabbar-selected nil
+;;  :background "white"
+;;  :foreground "black"
+;;  :underline nil
+;;  :box '(:line-width 5 :color "white" :style nil))
+;; ;; highlight is hover behavior
+;; (set-face-attribute
+;;  'tabbar-highlight nil
+;;  :background "DarkCyan"
+;;  :foreground "green"
+;;  :underline nil
+;;  :box '(:color "DarkCyan" :style nil))
+;; ;; defaults for button
+;; (set-face-attribute
+;;  'tabbar-button nil
+;;  :underline nil
+;;  :box '(:line-width 1 :color "white" :style nil))
+;; (set-face-attribute
+;;  'tabbar-unselected nil
+;;  :background "gray34"
+;;  :foreground "white"
+;;  :box '(:line-width 1 :color "white" :style released-button))
+;; (set-face-attribute
+;;  'tabbar-modified nil
+;;  :background "gray34"
+;;  :foreground "pink"
+;;  :inherit 'tabbar-unselected
+;;  :box '(:line-width 1 :color "white" :style released-button))
+;; (set-face-attribute
+;;  'tabbar-selected nil
+;;  :background "#bcbcbc"
+;;  :foreground "black"
+;;  :box nil)
+;; (set-face-attribute
+;;  'tabbar-button nil
+;;  :box '(:line-width 1 :color "gray72" :style released-button))
+;; (set-face-attribute
+;;  'tabbar-separator nil
+;;  :height 0.7)
+;; (set-face-attribute
+;;  'tabbar-button nil
+;;  :inherit 'tabbar-default-face
+;;  :box '(:line-width 1 :color "gray30"))
+;; (set-face-attribute 'tabbar-default  nil
+;;                     ;;:family "Courier"
+;;                     :height 1.1)
+;; (set-face-attribute
+;;  'tabbar-selected nil
+;;  :inherit 'tabbar-default-face
+;;  :foreground "blue3"
+;;  :background "LightGoldenrod"
+;;  :box '(:line-width 1 :color "DarkGoldenrod")
+;;  ;;:overline "black" :underline "black"
+;;  :weight 'bold)
+;; (set-face-attribute
+;;  'tabbar-unselected nil
+;;  :inherit 'tabbar-default-face
+;;  :box '(:line-width 1 :color "gray70"))
 
 ;; Change padding of the tabs
 ;; we also need to set separator to avoid overlapping tabs by highlighted tabs
