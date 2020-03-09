@@ -483,6 +483,7 @@
 (define-key my-keys-minor-mode-map (kbd "M-,") 'tabbar-backward)
 ;;(define-key my-keys-minor-mode-map (kbd "C-.") 'my-next-buffer)
 ;;(define-key my-keys-minor-mode-map (kbd "C-,") 'my-previous-buffer)
+(define-key my-keys-minor-mode-map (kbd "C-x C-/") 'redo)
 (define-key my-keys-minor-mode-map (kbd "C-x C-_") 'redo)
 (define-key my-keys-minor-mode-map [(control tab)] 'indent-region)
 (define-key my-keys-minor-mode-map (kbd "C-x C-,") 'windmove-left)
