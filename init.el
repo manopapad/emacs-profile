@@ -447,16 +447,11 @@
 ;; ===================
 
 ;; Disable Ctrl-Z minimization/suspension.
-(global-unset-key [(control z)])
-(global-unset-key [(control x)(control z)])
+(global-unset-key (kbd "C-z"))
+(global-unset-key (kbd "C-x C-z"))
 
 ;; Disable Ctrl-T transpose character.
-(global-unset-key [(control t)])
-
-;; Clear some keybindings for my use
-(global-unset-key (kbd "M-."))
-(global-unset-key (kbd "M-,"))
-(global-unset-key (kbd "M-?"))
+(global-unset-key (kbd "C-t"))
 
 ;; Define custom next-buffer and previous-buffer commands, that skip over
 ;; automatic buffers
@@ -486,8 +481,8 @@
 (define-key my-keys-minor-mode-map (kbd "C-x C-/") 'redo)
 (define-key my-keys-minor-mode-map (kbd "C-x C-_") 'redo)
 (define-key my-keys-minor-mode-map [(control tab)] 'indent-region)
-(define-key my-keys-minor-mode-map (kbd "C-x C-,") 'windmove-left)
-(define-key my-keys-minor-mode-map (kbd "C-x C-.") 'windmove-right)
+(define-key my-keys-minor-mode-map (kbd "C-x ,") 'windmove-left)
+(define-key my-keys-minor-mode-map (kbd "C-x .") 'windmove-right)
 (define-key my-keys-minor-mode-map (kbd "C-;") 'comment-region)
 (define-key my-keys-minor-mode-map (kbd "C-:") 'uncomment-region)
 (define-key my-keys-minor-mode-map (kbd "C-x k") 'kill-this-buffer)
