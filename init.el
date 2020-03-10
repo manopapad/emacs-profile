@@ -446,12 +446,11 @@
 ;; CUSTOM KEY BINDINGS
 ;; ===================
 
-;; Disable Ctrl-Z minimization/suspension.
-(global-unset-key (kbd "C-z"))
+;; Disable keybindings that conflict with common window manager shortcuts
+(global-unset-key (kbd "C-z")) ;; Ctrl-Z minimization/suspension (typically undo)
 (global-unset-key (kbd "C-x C-z"))
-
-;; Disable Ctrl-T transpose character.
-(global-unset-key (kbd "C-t"))
+(global-unset-key (kbd "C-t")) ;; Ctrl-T (typically new tab)
+(global-unset-key (kbd "C-M-i")) ;; M-tab (typically window switching)
 
 ;; Define custom next-buffer and previous-buffer commands, that skip over
 ;; automatic buffers
@@ -545,3 +544,11 @@
 
 ;; One space after sentence-ending period
 (setq sentence-end-double-space nil)
+
+;; Ediff configuration
+;;(setq ediff-diff-options "-w") ;; ignore whitespace
+(setq ediff-split-window-function 'split-window-horizontally)
+(setq ediff-ignore-similar-regions t)
+
+;; Open .inl files in C++ mode
+(add-to-list 'auto-mode-alist '("\\.inl\\'" . c++-mode))
