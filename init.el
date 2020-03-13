@@ -84,7 +84,7 @@
     (insert (concatenate 'string
 			 "===== "
 			 (format-time-string "%b %d %Y")
-			 " =============================================================\n"))))
+			 " ==============================================================\n"))))
 
 (defun insert-timestamp-top ()
   "Insert a timestamp at the top of the current buffer."
@@ -560,5 +560,6 @@
 (setq ediff-split-window-function 'split-window-horizontally)
 (setq ediff-ignore-similar-regions t)
 
-;; Open .inl files in C++ mode
+;; Additional extensions to open in C++ mode
 (add-to-list 'auto-mode-alist '("\\.inl\\'" . c++-mode))
+(add-to-list 'auto-mode-alist '("\\.cu\\'" . c++-mode))
