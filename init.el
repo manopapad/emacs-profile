@@ -120,11 +120,21 @@
 ;; Enable column number display
 (column-number-mode 1)
 
-;; Enable vertical indicator at the 80 columns mark
+;; Indicate column 80
 (setq-default fill-column 80)
-(require 'fill-column-indicator)
-(define-globalized-minor-mode global-fci-mode fci-mode (lambda () (fci-mode 1)))
-(global-fci-mode 1)
+;; https://www.emacswiki.org/emacs/ColumnMarker
+;; https://github.com/jordonbiondo/column-enforce-mode/
+;; https://github.com/ncrohn/emacs/blob/master/vendor/emacs-goodies-el/highlight-beyond-fill-column.el
+;; emacs27 native column mode
+;; fill-column-indicator
+;;   (introduces stray characters on character terminals => can't copy out)
+;;   (require 'fill-column-indicator)
+;;   (define-globalized-minor-mode global-fci-mode fci-mode (lambda () (fci-mode 1)))
+;;   (global-fci-mode 1)
+;; whitespace mode
+(setq-default whitespace-line-column 80 whitespace-style '(face lines-tail))
+(add-hook 'prog-mode-hook #'whitespace-mode)
+(custom-set-faces '(whitespace-line ((t (:background "LightSalmon")))))
 
 ;; Enable sensible word wrapping by default
 (global-visual-line-mode 1)
@@ -483,7 +493,7 @@
 (define-key my-keys-minor-mode-map (kbd "C-x ,") 'windmove-left)
 (define-key my-keys-minor-mode-map (kbd "C-x .") 'windmove-right)
 (define-key my-keys-minor-mode-map (kbd "C-;") 'comment-region)
-(define-key my-keys-minor-mode-map (kbd "C-:") 'uncomment-region)
+;; (define-key my-keys-minor-mode-map (kbd "C-:") 'uncomment-region)
 (define-key my-keys-minor-mode-map (kbd "C-x k") 'kill-this-buffer)
 
 (define-minor-mode my-keys-minor-mode
