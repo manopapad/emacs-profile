@@ -196,34 +196,49 @@
 (tabbar-mode 1)
 
 ;; Styling choice 1
-(set-face-attribute
- 'tabbar-default nil
- :background "gray20"
- :foreground "gray20"
- :box '(:line-width 1 :color "gray20" :style nil))
-(set-face-attribute
- 'tabbar-unselected nil
- :background "gray30"
- :foreground "white"
- :box '(:line-width 3 :color "gray30" :style nil))
-(set-face-attribute
- 'tabbar-selected nil
- :background "gray75"
- :foreground "black"
- :box '(:line-width 3 :color "gray75" :style nil))
-(set-face-attribute
- 'tabbar-highlight nil
- :background "white"
- :foreground "black"
- :underline nil
- :box '(:line-width 3 :color "white" :style nil))
-(set-face-attribute
- 'tabbar-button nil
- :box '(:line-width 1 :color "gray20" :style nil))
-(set-face-attribute
- 'tabbar-separator nil
- :background "gray20"
- :height 0.6)
+(set-face-attribute 'tabbar-default nil
+                    :background "gray20"
+                    :foreground "gray20"
+                    :underline nil
+                    :box '(:line-width 3 :color "gray20" :style nil))
+(set-face-attribute 'tabbar-unselected nil
+                    :background "gray30"
+                    :foreground "white"
+                    :underline nil
+                    :box '(:line-width 3 :color "gray30" :style nil))
+(set-face-attribute 'tabbar-selected nil
+                    :background "gray75"
+                    :foreground "black"
+                    :underline nil
+                    :box '(:line-width 3 :color "gray75" :style nil))
+(set-face-attribute 'tabbar-modified nil
+                    :background "gray30"
+                    :foreground "white"
+                    :underline nil
+                    :box '(:line-width 3 :color "gray30" :style nil))
+(set-face-attribute 'tabbar-selected-modified nil
+                    :background "gray75"
+                    :foreground "black"
+                    :underline nil
+                    :box '(:line-width 3 :color "gray75" :style nil))
+(set-face-attribute 'tabbar-highlight nil
+                    :background "white"
+                    :foreground "black"
+                    :underline nil
+                    :box '(:line-width 3 :color "white" :style nil))
+(set-face-attribute 'tabbar-button nil
+                    :background "gray30"
+                    :foreground "gray30"
+                    :underline nil
+                    :box '(:line-width 1 :color "gray30" :style nil))
+(set-face-attribute 'tabbar-button-highlight nil
+                    :background "gray30"
+                    :foreground "gray30"
+                    :underline nil
+                    :box '(:line-width 1 :color "gray30" :style nil))
+(set-face-attribute 'tabbar-separator nil
+                    :background "gray20"
+                    :height 0.6)
 
 ;; Styling choice 2
 ;; (set-face-attribute
