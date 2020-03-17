@@ -134,17 +134,18 @@
 ;; whitespace mode
 (setq-default whitespace-line-column 80 whitespace-style '(face lines-tail))
 (add-hook 'prog-mode-hook #'whitespace-mode)
-(custom-set-faces '(whitespace-line ((t (:background "LightSalmon")))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(whitespace-line ((t (:background "LightSalmon")))))
 
 ;; Enable sensible word wrapping by default
 (global-visual-line-mode 1)
 
 ;; Highlight matching parens
 (show-paren-mode t)
-
-;; Display the fringe on the left only
-;; (fringe-mode '(8 . nil))
-;; (fringe-mode 'no-fringes)
 
 ;; Disable scrollbars
 (set-scroll-bar-mode 'nil)
@@ -417,7 +418,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(fringe-mode (quote (nil . 0)) nil (fringe))
+ '(fringe-mode (quote (5 . 0)) nil (fringe))
  '(lua-indent-level 2)
  '(safe-local-variable-values (quote ((timestamp-on-open . f))))
  '(tabbar-separator (quote (0.5)))
@@ -507,6 +508,8 @@
 (define-key my-keys-minor-mode-map [(control tab)] 'indent-region)
 (define-key my-keys-minor-mode-map (kbd "C-x ,") 'windmove-left)
 (define-key my-keys-minor-mode-map (kbd "C-x .") 'windmove-right)
+(define-key my-keys-minor-mode-map (kbd "C-x C-,") 'windmove-left)
+(define-key my-keys-minor-mode-map (kbd "C-x C-.") 'windmove-right)
 (define-key my-keys-minor-mode-map (kbd "C-;") 'comment-region)
 ;; (define-key my-keys-minor-mode-map (kbd "C-:") 'uncomment-region)
 (define-key my-keys-minor-mode-map (kbd "C-x k") 'kill-this-buffer)
