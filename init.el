@@ -229,7 +229,7 @@
                     :box '(:line-width 3 :color "white" :style nil))
 (set-face-attribute 'tabbar-button nil
                     :background "gray75"
-                    :foreground "gray75"
+                    :foreground "black"
                     :underline nil
                     :box '(:line-width 1 :color "gray75" :style nil))
 (set-face-attribute 'tabbar-button-highlight nil
@@ -410,6 +410,11 @@
 ;;  'tabbar-unselected nil
 ;;  :inherit 'tabbar-default-face
 ;;  :box '(:line-width 1 :color "gray70"))
+
+;; Hide tabbar buttons
+(customize-set-variable 'tabbar-scroll-right-button '(("") ""))
+(customize-set-variable 'tabbar-scroll-left-button '(("") ""))
+(customize-set-variable 'tabbar-buffer-home-button '(("") ""))
 
 ;; Change padding of the tabs
 ;; we also need to set separator to avoid overlapping tabs by highlighted tabs
