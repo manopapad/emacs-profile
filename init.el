@@ -238,7 +238,7 @@
                     :underline nil
                     :box '(:line-width 1 :color "white" :style nil))
 (set-face-attribute 'tabbar-separator nil
-                    :background "white"
+                    :background "gray75"
                     :height 0.6)
 
 ;; Styling choice 2
