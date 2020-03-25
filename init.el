@@ -106,6 +106,9 @@
 ;; VISUAL TWEAKS
 ;; =============
 
+;; Enable pixelwise resizing on window systems
+(setq frame-resize-pixelwise t)
+
 ;; Don't use special formatting for doc comments
 (setq c-doc-comment-style 'nil)
 
