@@ -15,6 +15,9 @@
 ;; BEHAVIOR TWEAKS
 ;; ===============
 
+;; Disable bell
+(setq ring-bell-function 'ignore)
+
 ;; Honor extension filter when completing file names, even if no characters
 ;; have been entered.
 ;; (defadvice completion--file-name-table (after
@@ -27,9 +30,14 @@
 ;; 	(setq ad-return-value
 ;;               (completion-pcm--filename-try-filter res)))))
 
-;; Stop Emacs from opening a buffer list when passed multiple files in the
-;; command line
+;; Startup buffer behavior
+;; Disable startup screens
+(setq inhibit-splash-screen t)
+(setq inhibit-startup-screen t)
+;; Disable buffer list pop on multiple input files
 (setq inhibit-startup-buffer-menu t)
+;; Disable window split on multiple input files
+(add-hook 'emacs-startup-hook (lambda () (delete-other-windows)) t)
 
 ;; Enable integration with the X server clipboard
 (setq x-select-enable-clipboard t)
@@ -152,9 +160,6 @@
 
 ;; Disable scrollbars
 (set-scroll-bar-mode 'nil)
-
-;; Disable startup splash screen
-(setq inhibit-splash-screen t)
 
 ;; Fix java indentation format to match that of Eclipse
 (add-hook 'java-mode-hook (lambda () (setq c-basic-offset 4
