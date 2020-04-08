@@ -482,6 +482,9 @@
 	       (string= (buffer-name buffer) "TAGS")))
 	 (buffer-list))))
 
+;; Start maximized
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
+
 ;; CUSTOM KEY BINDINGS
 ;; ===================
 
@@ -526,6 +529,7 @@
 (define-key my-keys-minor-mode-map (kbd "C-;") 'comment-region)
 ;; (define-key my-keys-minor-mode-map (kbd "C-:") 'uncomment-region)
 (define-key my-keys-minor-mode-map (kbd "C-x k") 'kill-this-buffer)
+(define-key my-keys-minor-mode-map (kbd "C-x f") 'find-file)
 
 (define-minor-mode my-keys-minor-mode
   "A minor mode so that my key settings override annoying major modes."
