@@ -37,7 +37,8 @@
 ;; Disable buffer list pop on multiple input files
 (setq inhibit-startup-buffer-menu t)
 ;; Disable window split on multiple input files
-(add-hook 'emacs-startup-hook (lambda () (delete-other-windows)) t)
+;; interferes with ediff-as-difftool
+;; (add-hook 'emacs-startup-hook (lambda () (delete-other-windows)) t)
 
 ;; Enable integration with the X server clipboard
 (setq x-select-enable-clipboard t)
@@ -583,10 +584,6 @@
 ;; Don't ask to follow symlinks to VC-managed files
 (setq vc-follow-symlinks nil)
 
-;; Set initial window size
-(add-to-list 'default-frame-alist '(height . 60))
-(add-to-list 'default-frame-alist '(width . 100))
-
 ;; One space after sentence-ending period
 (setq sentence-end-double-space nil)
 
@@ -594,6 +591,7 @@
 ;;(setq ediff-diff-options "-w") ;; ignore whitespace
 (setq ediff-split-window-function 'split-window-horizontally)
 (setq ediff-ignore-similar-regions t)
+(setq ediff-window-setup-function 'ediff-setup-windows-plain)
 
 ;; Additional extensions to open in C++ mode
 (add-to-list 'auto-mode-alist '("\\.inl\\'" . c++-mode))
