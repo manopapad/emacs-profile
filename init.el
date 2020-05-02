@@ -596,3 +596,7 @@
 ;; Additional extensions to open in C++ mode
 (add-to-list 'auto-mode-alist '("\\.inl\\'" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.cu\\'" . c++-mode))
+
+;; dumb-jump (C-M-g to jump to definition)
+(require 'dumb-jump)
+(dumb-jump-mode 1)
