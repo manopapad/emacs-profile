@@ -601,4 +601,4 @@
 ;; dumb-jump (C-M-g to jump to definition)
 (require 'dumb-jump)
 (dumb-jump-mode 1)
-(setq dumb-jump-force-searcher 'grep)
+(setq dumb-jump-force-searcher 'rg)
