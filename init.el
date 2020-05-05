@@ -602,3 +602,8 @@
 (require 'dumb-jump)
 (dumb-jump-mode 1)
 (setq dumb-jump-force-searcher 'ag)
+
+;; Google C++ style
+(require 'google-c-style)
+(add-hook 'c-mode-common-hook 'google-set-c-style)
+(add-hook 'c-mode-common-hook 'google-make-newline-indent)
