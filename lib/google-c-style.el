@@ -121,12 +121,12 @@ Suitable for inclusion in `c-offsets-alist'."
                              'c-no-indent-after-java-annotations)
                           ,(when (fboundp 'c-lineup-assignments)
                              'c-lineup-assignments)
-                          +))
+                          ++))
                         (label . /)
                         (case-label . +)
                         (statement-case-open . +)
                         (statement-case-intro . +) ; case w/o {
-                        (access-label . -)
+                        (access-label . /)
                         (innamespace . 0))))
   "Google C/C++ Programming Style.")
 
