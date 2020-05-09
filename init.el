@@ -125,15 +125,14 @@
 (tool-bar-mode 0)
 (menu-bar-mode 0)
 
-;; Set up indentation
-(setq-default c-basic-offset 2)
-(setq-default indent-tabs-mode nil)
-
 ;; Enable column number display
 (column-number-mode 1)
 
-;; Indicate column 80
+;; Indicate column 80, except in C/C++ mode
 (setq-default fill-column 80)
+(add-hook 'c++-mode-hook
+          (lambda ()
+            (setq fill-column 100)))
 ;; https://www.emacswiki.org/emacs/ColumnMarker
 ;; https://github.com/jordonbiondo/column-enforce-mode/
 ;; https://github.com/ncrohn/emacs/blob/master/vendor/emacs-goodies-el/highlight-beyond-fill-column.el
@@ -144,8 +143,14 @@
 ;;   (define-globalized-minor-mode global-fci-mode fci-mode (lambda () (fci-mode 1)))
 ;;   (global-fci-mode 1)
 ;; whitespace mode
-(setq-default whitespace-line-column 80 whitespace-style '(face lines-tail))
-(add-hook 'prog-mode-hook #'whitespace-mode)
+(setq-default whitespace-style '(face lines-tail))
+(setq-default whitespace-line-column fill-column)
+(add-hook 'prog-mode-hook 'whitespace-mode)
+(add-hook 'c++-mode-hook
+          (lambda ()
+	    (setq whitespace-line-column fill-column)
+	    (whitespace-mode 0)
+	    (whitespace-mode 1)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -166,12 +171,6 @@
 (add-hook 'java-mode-hook (lambda () (setq c-basic-offset 4
 					   tab-width 4
 					   indent-tabs-mode t)))
-
-;; Fix indentation of C++ namespaces
-(c-add-style "my-cc-style"
-	     '("gnu"
-	       (c-offsets-alist . ((innamespace . [0])))))
-(setq c-default-style "my-cc-style")
 
 ;; Highlight programmer annotations
 (add-hook 'find-file-hook
@@ -227,7 +226,7 @@
                     :underline nil
                     :box '(:line-width 3 :color "white" :style nil))
 (set-face-attribute 'tabbar-selected-modified nil
-                    :background "white"
+                    :background "#ffffff"
                     :foreground "black"
                     :underline nil
                     :box '(:line-width 3 :color "white" :style nil))
@@ -597,6 +596,7 @@
 ;; Additional extensions to open in C++ mode
 (add-to-list 'auto-mode-alist '("\\.inl\\'" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.cu\\'" . c++-mode))
+(add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 
 ;; dumb-jump (C-M-g to jump to definition)
 (require 'dumb-jump)
@@ -605,5 +605,5 @@
 
 ;; Google C++ style
 (require 'google-c-style)
-(add-hook 'c-mode-common-hook 'google-set-c-style)
-(add-hook 'c-mode-common-hook 'google-make-newline-indent)
+(add-hook 'c++-mode-hook 'google-set-c-style)
+(add-hook 'c++-mode-hook 'google-make-newline-indent)
