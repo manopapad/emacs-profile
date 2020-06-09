@@ -144,6 +144,7 @@
 ;;   (global-fci-mode 1)
 ;; whitespace mode
 (setq-default whitespace-style '(face lines-tail))
+(make-local-variable 'whitespace-line-column)
 (setq-default whitespace-line-column fill-column)
 (add-hook 'prog-mode-hook 'whitespace-mode)
 (add-hook 'c++-mode-hook
@@ -597,6 +598,7 @@
 (add-to-list 'auto-mode-alist '("\\.inl\\'" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.cu\\'" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
+(add-to-list 'auto-mode-alist '("\\.cuh\\'" . c++-mode))
 
 ;; dumb-jump (C-M-g to jump to definition)
 (require 'dumb-jump)
