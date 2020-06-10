@@ -15,6 +15,9 @@
 ;; BEHAVIOR TWEAKS
 ;; ===============
 
+;; Indent using spaces, not tabs
+(setq-default indent-tabs-mode nil)
+
 ;; Disable bell
 (setq ring-bell-function 'ignore)
 
