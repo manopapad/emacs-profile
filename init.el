@@ -606,7 +606,8 @@
 ;; dumb-jump (C-M-g to jump to definition)
 (require 'dumb-jump)
 (dumb-jump-mode 1)
-(setq dumb-jump-force-searcher 'ag)
+(setq dumb-jump-force-searcher 'rg)
+(setq dumb-jump-rg-search-args "--pcre2 --type-add cpp:*.cu --type-add cpp:*.cuh")
 
 ;; Google C++ style
 (require 'google-c-style)
