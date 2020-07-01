@@ -613,3 +613,9 @@
 (require 'google-c-style)
 (add-hook 'c++-mode-hook 'google-set-c-style)
 (add-hook 'c++-mode-hook 'google-make-newline-indent)
+
+;; Disable version control for tramp
+(setq vc-ignore-dir-regexp
+      (format "\\(%s\\)\\|\\(%s\\)"
+              vc-ignore-dir-regexp
+              tramp-file-name-regexp))
