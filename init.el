@@ -148,11 +148,11 @@
 ;; whitespace mode
 (setq-default whitespace-style '(face lines-tail))
 (make-local-variable 'whitespace-line-column)
-(setq-default whitespace-line-column fill-column)
+(setq-default whitespace-line-column 80)
 (add-hook 'prog-mode-hook 'whitespace-mode)
 (add-hook 'c++-mode-hook
           (lambda ()
-	    (setq whitespace-line-column fill-column)
+	    (setq whitespace-line-column 100)
 	    (whitespace-mode 0)
 	    (whitespace-mode 1)))
 (custom-set-faces
