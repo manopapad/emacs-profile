@@ -1,9 +1,8 @@
-;; Include the lib/ directory in the load path, and the initial value of
-;; $PATH used for spawned shells.
-(setq user-lib-dir (concat user-emacs-directory "lib/"))
+;; Update load path, and initial value of $PATH used for spawned shells.
+(setq user-lib-dir (concat user-emacs-directory "/lib"))
 (push user-lib-dir load-path)
 (push user-lib-dir exec-path)
-(setenv "PATH" (concat user-lib-dir ":" (getenv "PATH")))
+(setenv "PATH" (concat  (getenv "PATH") ":" user-lib-dir ":" (concat (getenv "HOME") "/bin")))
 
 ;; Helper function: load all .el files in a directory
 (defun load-directory (dir)
@@ -619,3 +618,6 @@
       (format "\\(%s\\)\\|\\(%s\\)"
               vc-ignore-dir-regexp
               tramp-file-name-regexp))
+
+;; Disable backups for remote files
+(add-to-list 'backup-directory-alist (cons tramp-file-name-regexp nil))
