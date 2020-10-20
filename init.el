@@ -124,7 +124,7 @@
 (setq c-doc-comment-style 'nil)
 
 ;; Autohide the tool bar and menu bar
-(tool-bar-mode 0)
+(when (fboundp 'tool-bar-mode) (tool-bar-mode 0))
 (menu-bar-mode 0)
 
 ;; Enable column number display
@@ -168,7 +168,7 @@
 (show-paren-mode t)
 
 ;; Disable scrollbars
-(set-scroll-bar-mode 'nil)
+(when (fboundp 'set-scroll-bar-mode) (set-scroll-bar-mode 'nil))
 
 ;; Fix java indentation format to match that of Eclipse
 (add-hook 'java-mode-hook (lambda () (setq c-basic-offset 4
