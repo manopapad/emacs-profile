@@ -621,3 +621,7 @@
 
 ;; Disable backups for remote files
 (add-to-list 'backup-directory-alist (cons tramp-file-name-regexp nil))
+
+;; Dockerfile mode
+(require 'dockerfile-mode)
+(add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
