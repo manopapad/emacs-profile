@@ -134,8 +134,8 @@
 (setq-default fill-column 80)
 (add-hook 'c++-mode-hook
           (lambda ()
-            (setq fill-column 100)))
-(setq-default c-backslash-max-column 99)
+            (setq fill-column 100)
+            (setq c-backslash-max-column 99)))
 ;; https://www.emacswiki.org/emacs/ColumnMarker
 ;; https://github.com/jordonbiondo/column-enforce-mode/
 ;; https://github.com/ncrohn/emacs/blob/master/vendor/emacs-goodies-el/highlight-beyond-fill-column.el
