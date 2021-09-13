@@ -608,6 +608,7 @@
 (dumb-jump-mode 1)
 (setq dumb-jump-force-searcher 'rg)
 (setq dumb-jump-rg-search-args "--pcre2 --type-add cpp:*.cu --type-add cpp:*.cuh")
+(setq dumb-jump-default-project "~/doesnotexist")
 
 ;; Google C++ style
 (require 'google-c-style)
