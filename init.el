@@ -130,29 +130,24 @@
 ;; Enable column number display
 (column-number-mode 1)
 
-;; Indicate column 80, except in C/C++ mode
+;; Indicate column 80, except for C/C++ and python code (using whitespace mode)
+;;
 (setq-default fill-column 80)
-(add-hook 'c++-mode-hook
-          (lambda ()
-            (setq fill-column 100)
-            (setq c-backslash-max-column 99)))
-;; https://www.emacswiki.org/emacs/ColumnMarker
-;; https://github.com/jordonbiondo/column-enforce-mode/
-;; https://github.com/ncrohn/emacs/blob/master/vendor/emacs-goodies-el/highlight-beyond-fill-column.el
-;; emacs27 native column mode
-;; fill-column-indicator
-;;   (introduces stray characters on character terminals => can't copy out)
-;;   (require 'fill-column-indicator)
-;;   (define-globalized-minor-mode global-fci-mode fci-mode (lambda () (fci-mode 1)))
-;;   (global-fci-mode 1)
-;; whitespace mode
 (setq-default whitespace-style '(face lines-tail))
 (make-local-variable 'whitespace-line-column)
 (setq-default whitespace-line-column 80)
 (add-hook 'prog-mode-hook 'whitespace-mode)
 (add-hook 'c++-mode-hook
           (lambda ()
+	    (setq fill-column 100)
+	    (setq c-backslash-max-column 99)
 	    (setq whitespace-line-column 100)
+	    (whitespace-mode 0)
+	    (whitespace-mode 1)))
+(add-hook 'python-mode-hook
+          (lambda ()
+	    (setq fill-column 79)
+	    (setq whitespace-line-column 79)
 	    (whitespace-mode 0)
 	    (whitespace-mode 1)))
 (custom-set-faces
@@ -161,6 +156,16 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(whitespace-line ((t (:background "misty rose")))))
+;; other options:
+;; https://www.emacswiki.org/emacs/ColumnMarker
+;; https://github.com/jordonbiondo/column-enforce-mode/
+;; https://github.com/ncrohn/emacs/blob/master/vendor/emacs-goodies-el/highlight-beyond-fill-column.el
+;; emacs27 native column mode
+;; fill-column-indicator
+;;   introduces stray characters on character terminals => can't copy out
+;;   (require 'fill-column-indicator)
+;;   (define-globalized-minor-mode global-fci-mode fci-mode (lambda () (fci-mode 1)))
+;;   (global-fci-mode 1)
 
 ;; Enable sensible word wrapping by default
 (global-visual-line-mode 1)
