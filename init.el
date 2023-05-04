@@ -632,3 +632,6 @@
 ;; Dockerfile mode
 (require 'dockerfile-mode)
 (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
+
+;; Cython mode
+(require 'cython-mode)
