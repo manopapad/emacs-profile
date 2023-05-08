@@ -574,10 +574,10 @@
 ;; =========
 
 ;; Lua mode (edited to parse terra blocks)
-(require 'lua-mode)
+;; (require 'lua-mode)
 
 ;; Regent mode
-(require 'regent-mode)
+;; (require 'regent-mode)
 
 ;; Highlight word at point
 (require 'highlight-symbol)
