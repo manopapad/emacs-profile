@@ -501,36 +501,37 @@
 (global-unset-key (kbd "C-z")) ;; Ctrl-Z minimization/suspension (typically undo)
 (global-unset-key (kbd "C-x C-z"))
 (global-unset-key (kbd "C-t")) ;; Ctrl-T (typically new tab)
-(global-unset-key (kbd "C-M-i")) ;; M-tab (typically window switching)
+;; M-tab (typically window switching)
 
 ;; Define custom next-buffer and previous-buffer commands, that skip over
 ;; automatic buffers
-(setq skippable-buffers '("*Messages*" "*scratch*" "*Help*" "*Completions*"
-			  "*Buffer List*"))
-(defun my-next-buffer ()
-  "next-buffer that skips certain buffers"
-  (interactive)
-  (next-buffer)
-  (while (member (buffer-name) skippable-buffers)
-    (next-buffer)))
-(defun my-previous-buffer ()
-  "previous-buffer that skips certain buffers"
-  (interactive)
-  (previous-buffer)
-  (while (member (buffer-name) skippable-buffers)
-    (previous-buffer)))
+;; (setq skippable-buffers '("*Messages*" "*scratch*" "*Help*" "*Completions*"
+;; 			  "*Buffer List*"))
+;; (defun my-next-buffer ()
+;;   "next-buffer that skips certain buffers"
+;;   (interactive)
+;;   (next-buffer)
+;;   (while (member (buffer-name) skippable-buffers)
+;;     (next-buffer)))
+;; (defun my-previous-buffer ()
+;;   "previous-buffer that skips certain buffers"
+;;   (interactive)
+;;   (previous-buffer)
+;;   (while (member (buffer-name) skippable-buffers)
+;;     (previous-buffer)))
 
 ;; Use a minor mode for all custom key bindings:
 ;; This will stop major modes from overriding my key bindings
 (defvar my-keys-minor-mode-map (make-keymap) "my-keys-minor-mode keymap.")
 
+;; These conflict with xref (xref-find-definitions, xref-pop-marker-stack)
 (define-key my-keys-minor-mode-map (kbd "M-.") 'tabbar-forward)
 (define-key my-keys-minor-mode-map (kbd "M-,") 'tabbar-backward)
+;; Ctrl-, and Ctrl-. won't get passed through terminal
 ;;(define-key my-keys-minor-mode-map (kbd "C-.") 'my-next-buffer)
 ;;(define-key my-keys-minor-mode-map (kbd "C-,") 'my-previous-buffer)
 (define-key my-keys-minor-mode-map (kbd "C-x C-/") 'redo)
 (define-key my-keys-minor-mode-map (kbd "C-x C-_") 'redo)
-;; (define-key my-keys-minor-mode-map [(control tab)] 'indent-region)
 (define-key my-keys-minor-mode-map (kbd "C-x ,") 'windmove-left)
 (define-key my-keys-minor-mode-map (kbd "C-x .") 'windmove-right)
 (define-key my-keys-minor-mode-map (kbd "C-x C-,") 'windmove-left)
@@ -539,7 +540,8 @@
 ;; (define-key my-keys-minor-mode-map (kbd "C-:") 'uncomment-region)
 (define-key my-keys-minor-mode-map (kbd "C-x k") 'kill-this-buffer)
 (define-key my-keys-minor-mode-map (kbd "C-x f") 'find-file)
-(define-key my-keys-minor-mode-map (kbd "C-M-i") 'dumb-jump-go)
+(define-key my-keys-minor-mode-map (kbd "C-M-.") 'dumb-jump-go)
+(define-key my-keys-minor-mode-map (kbd "C-M-,") 'dumb-jump-back)
 
 (define-minor-mode my-keys-minor-mode
   "A minor mode so that my key settings override annoying major modes."
