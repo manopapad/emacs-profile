@@ -540,8 +540,8 @@
 ;; (define-key my-keys-minor-mode-map (kbd "C-:") 'uncomment-region)
 (define-key my-keys-minor-mode-map (kbd "C-x k") 'kill-this-buffer)
 (define-key my-keys-minor-mode-map (kbd "C-x f") 'find-file)
-(define-key my-keys-minor-mode-map (kbd "C-M-.") 'dumb-jump-go)
-(define-key my-keys-minor-mode-map (kbd "C-M-,") 'dumb-jump-back)
+(define-key my-keys-minor-mode-map (kbd "C-M-i") 'dumb-jump-go)
+(define-key my-keys-minor-mode-map (kbd "C-M-u") 'dumb-jump-back)
 
 (define-minor-mode my-keys-minor-mode
   "A minor mode so that my key settings override annoying major modes."
