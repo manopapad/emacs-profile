@@ -442,7 +442,18 @@
  ;; If there is more than one, they won't work right.
  '(fringe-mode (quote (5 . 0)) nil (fringe))
  '(lua-indent-level 2)
- '(safe-local-variable-values (quote ((timestamp-on-open . f))))
+ '(safe-local-variable-values
+   (quote
+    ((python-interpreter seq-find
+                         (lambda
+                           (item)
+                           (executable-find item))
+                         (quote
+                          ("python3" "python")))
+     (eval add-hook
+           (quote before-save-hook)
+           (function delete-trailing-whitespace))
+     (timestamp-on-open . f))))
  '(tabbar-separator (quote (0.5)))
  '(terra-indent-level 2))
 
