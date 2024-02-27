@@ -493,7 +493,7 @@
       (lambda () (list "All Buffers")))
 
 ;; Hide scratch and TAGS tabs
-(require 'cl)
+;; (require 'cl)
 (setq tabbar-buffer-list-function
       (lambda ()
 	(remove-if
@@ -648,3 +648,6 @@
 
 ;; Cython mode
 (require 'cython-mode)
+
+;; Bring emacs to foreground when launched
+(when window-system (x-focus-frame nil))
