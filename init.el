@@ -440,21 +440,17 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(fringe-mode (quote (5 . 0)) nil (fringe))
+ '(fringe-mode '(5 . 0) nil (fringe))
  '(lua-indent-level 2)
  '(safe-local-variable-values
-   (quote
-    ((python-interpreter seq-find
+   '((python-interpreter seq-find
                          (lambda
                            (item)
                            (executable-find item))
-                         (quote
-                          ("python3" "python")))
-     (eval add-hook
-           (quote before-save-hook)
-           (function delete-trailing-whitespace))
-     (timestamp-on-open . f))))
- '(tabbar-separator (quote (0.5)))
+                         '("python3" "python"))
+     (eval add-hook 'before-save-hook #'delete-trailing-whitespace)
+     (timestamp-on-open . f)))
+ '(tabbar-separator '(0.5))
  '(terra-indent-level 2))
 
 ;; adding spaces
